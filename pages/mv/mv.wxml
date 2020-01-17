@@ -1,0 +1,57 @@
+<view class="viedo"></view>
+<view class="tabs">
+  <text class="tabs_item {{status == 0 ? 'active' :''}}" data-id="0" bindtap="changeStatus">详情</text>
+  <text class="tabs_item {{status == 1 ? 'active' :''}}" data-id="1" bindtap="changeStatus">评论</text>
+  <text class="tabs_item {{status == 2 ? 'active' :''}}" data-id="2" bindtap="changeStatus">相关Mv</text>
+</view>
+<view id='main'>
+  <!-- 详情 -->
+  <view hidden="{{status != 0 }}" class="details">
+    <view class="info">
+      <text>歌手：模考默哀</text>
+      <text>播放：123</text>
+    </view>
+    <text class="des">发行：的</text> 没找到接口，没有样式
+  </view>
+  <!-- 评论 -->
+  <view hidden="{{status != 1 }}">
+  接口已通，数据数comment：{}
+     
+    <view class="comment">
+      <view class="artisHead">
+        <image src="/static/banner1.jpg"></image>
+      </view>
+      <view class="com_info">
+        <view class="com_time">
+          <view>
+            <text class="com_name">叮叮当叮叮当多多</text>
+            <text class="time">12.03</text>
+           </view>
+           <view class="save">
+              <text>0</text>
+            <image src="/static/image/xg.png"></image>
+          </view>
+        </view>
+        <view class="com_content">
+          <text>方法方法付付付过或军</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- Mv -->
+  <view hidden="{{status != 2 }}">
+    <view wx:for="{{simi}}" wx:key="{{id}}" class="mvs">
+      <view class="cover">
+        <image src="{{item.cover}}"></image>
+        <view class="modal">
+          <image src="/static/image/video.png" />
+          <text>{{item.playCount}}</text>
+        </view>
+      </view>
+      <view class="introduce">
+        <text class="name">{{item.briefDesc}}</text>
+        <text class="artistName">{{item.artistName}}</text>
+      </view>
+    </view>
+  </view>
+</view>

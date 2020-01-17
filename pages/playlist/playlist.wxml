@@ -1,0 +1,67 @@
+<view class="header">
+  <view class="left">
+    <image src="{{data.coverImgUrl}}"></image>
+    <view class="modal">
+      <image src="/static/image/p0.png" />
+      <text>{{data.playCount}}</text>
+    </view>
+    <view class="info">
+      <image src="/static/image/cm2_list_detail_icn_infor@2x.png"></image>
+    </view>
+  </view>
+  <view class="right">
+    <text class="title">{{data.name}}</text>
+    <view class="center">
+      <image class="title_active" src="{{data.creator.avatarUrl}}"></image>
+      <text class="title_name">{{data.creator.nickname}}</text>
+      <image class="icn" src="/static/image/cm2_list_detail_icn_arr@2x.png"></image>
+    </view>
+  </view>
+  <view class="count">
+    <view class="count_item">
+      <image src="/static/image/cm2_list_detail_icn_fav_new@2x.png"></image>
+      <text>{{data.subscribedCount}}</text>
+    </view>
+    <view class="count_item">
+      <navigator url="../recommend/recommend" style="width : 100%;">
+        <image src="/static/image/cm2_list_detail_icn_cmt@2x.png"></image>
+        <text> {{data.commentCount}}</text>
+      </navigator>
+    </view>
+    <view class="count_item">
+      <image src="/static/image/cm2_list_detail_icn_share@2x.png"></image>
+      <text>{{data.shareCount}}</text>
+    </view>
+  </view>
+</view>
+<view class="main">
+  <view class="all">
+    <image class="playall" src="/static/image/pl-playall.png"></image>
+    <view class="text">
+      <text class="all_text">播放全部</text>
+      <text class="explain">（共{{playList.length}}首）</text>
+    </view>
+  </view>
+  <view class="song" wx:for="{{playList}}" wx:key="id">
+    <text class="all">{{index + 1}}</text>
+    <view class="text">
+      <navigator url="../palying/palyingid={{item.id}}">
+        <view class="main">
+          <view class="top">
+            <text class="all_text">{{item.name}}</text>
+            <text class="explain">{{item.alia[0]}}</text>
+          </view>
+          <view class="bottom">
+            <text>{{item.ar[0].name}}-{{item.al.name}}</text>
+          </view>
+        </view>
+      </navigator>
+      <navigator url="../mv/mv?id={{item.id}}" hidden="{{item.copyright != 1 }}">
+        <view class="gomv">
+          <image src="/static/image/l0.png"></image>
+        </view>
+      </navigator>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,43 @@
+<view id="search_header">
+  <view id="search_input">
+    <form bindsubmit="searhFinput">
+      <view class="form">
+        <view class="form_input">
+          <view>
+            <icon type="search" size="16" color="#aaa" />
+          </view>
+          <input type="text" auto-focus maxlength="20" name="name" bindinput="inputext" value="{{value}}" placeholder="搜索单曲、歌手、专辑等" />
+          <view class="sf_clear" bindtap="clear_kw" hidden="{{value =='' ? true : false}}">
+            <icon type="clear" size="16" color="#aaa" />
+          </view>
+        </view>
+        <view class="button">
+          <button form-type="submit" plain="true" size="mini">
+            搜索
+          </button>
+        </view>
+      </view>
+    </form>
+  </view>
+</view>
+<view class="body">
+  <view class="s_tabs" hidden="{{tabs}}">
+      数据已经请求成功，内容重复，不想写了
+  </view>
+  <view class="history" hidden="{{!tabs}}" wx:if="{{record.length}}">
+    <text class="record">历史记录</text>
+    <view class="sr_lists " wx:for="{{record}}" wx:key="item"  wx:if="{{idx<5}}" data-value="{{item}}" wx:for-index="idx">
+      <view class="flexnum" bindtap="searchRecord" data-value="{{item}}">
+        <icon type="waiting_circle" size="22" color="#ddd"></icon>
+        <view class="flexmain">
+          <view>{{item}}</view>
+        </view>
+      </view>
+      <view class="flexlist" bindtap="delRecord" data-index="{{idx}}">
+        <view class="flexact">
+          <image src="/static/image/cm2_playlist_icn_dlt@2x.png" />
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

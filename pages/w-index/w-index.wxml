@@ -1,0 +1,164 @@
+<view class="tabs">
+  <text class="tabs_item {{status == 0 ? 'active' :''}}" data-id="0" bindtap="changeStatus">个性推荐</text>
+  <text class="tabs_item {{status == 1 ? 'active' :''}}" data-id="1" bindtap="changeStatus">歌单</text>
+  <text class="tabs_item {{status ==2 ? 'active' :''}}" data-id="2" bindtap="changeStatus">主播电台</text>
+  <text class="tabs_item {{status == 3 ? 'active' :''}}" data-id="3" bindtap="changeStatus">排行榜</text>
+  <navigator url="../search/search" class="tab-item" id="lastsearch">
+    <icon type="search" size="18" color="#666" />
+  </navigator>
+</view>
+<!--  hidden="{{false}}" 显示 -->
+<!-- 个性推荐 -->
+<view hidden="{{status!= 0}}">
+  <swiper indicator-dots="true" autoplay="true" circular="true">
+    <swiper-item wx:for-items="{{imgs}}" wx:key="id">
+      <image src="{{item.url}}" class="image" width="750" height="290" />
+    </swiper-item>
+  </swiper>
+  <view class="nav">
+    <view class="nav_item">
+      <navigator url="../fm/fm">
+        <view>
+          <image src="/static/image/cm2_discover_icn_fm-ip6@2x.png"></image>
+        </view>
+        私人FM
+      </navigator>
+    </view>
+    <view class="nav_item">
+      <navigator url="../recsongs/recsongs">
+      
+        <view class="thisday">{{thisday}}</view>
+        每日歌曲推荐
+      </navigator>
+    </view>
+    <view class="nav_item">
+      <navigator url="../playlist/playlist?pid=3778678">
+        <view>
+          <image src="/static/image/cm2_discover_icn_upbill-ip6@2x.png"></image>
+        </view>
+        云音乐热歌榜
+      </navigator>
+    </view>
+  </view>
+  <!-- 推荐歌单 -->
+  <view class="recommend">
+    <view class="rec_nav">
+      <view>
+        <image class="rec_img" width="30" mode="widthFix" src="/static/image/cm2_discover_icn_recmd@2x.png" />推荐歌单
+      </view>
+      <view class="rec_more" bindtap="changeStatus" data-id="1">更多></view>
+    </view>
+    <view class="rec_content">
+      <view class="content_item" wx:for="{{recommend}}" wx:key="id">
+        <navigator url="../playlist/playlist?pid={{item.id}}&from=toplist">
+          <image src="{{item.picUrl}}"></image>
+          <text class="name">{{item.name}}</text>
+          <view class="modal">
+            <image src="/static/image/p0.png" />
+            <text>{{item.playCount}}</text>
+          </view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <!-- 最新音乐 -->
+  <view class="recommend">
+    <view class="rec_nav">
+      <view>
+        <image class="rec_img" width="30" mode="widthFix" src="/static/image/cm2_discover_icn_newest@2x.png" />最新音乐
+      </view>
+      <view class="rec_more" bindtap="changeStatus" data-id="1">更多></view>
+    </view>
+    <view class="mv">
+      <view class="content_item" wx:for="{{newsong}}" wx:key="id">
+        <image src="{{item.picUrl}}"></image>
+        <text class="name">{{item.name}}</text>
+        <text class="artistName">{{item.song.artists[0].name}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 推荐mv -->
+  <view class="recommend">
+    <view class="rec_nav">
+      <view>
+        <image class="rec_img" width="30" mode="widthFix" src="/static/image/cm2_discover_icn_radio@2x.png" />推荐mv
+      </view>
+      <view class="rec_more" bindtap="changeStatus" data-id="1">更多></view>
+    </view>
+    <view class="mv">
+      <view class="content_item" wx:for="{{mv}}" wx:key="id">
+        <image src="{{item.picUrl}}"></image>
+        <text class="name">{{item.name}}</text>
+        <text class="artistName">{{item.artistName}}</text>
+        <view class="modal">
+          <image src="/static/image/video.png" />
+          <text>{{item.playCount}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 主播电台 -->
+  <view class="recommend">
+    <view class="rec_nav">
+      <view>
+        <image class="rec_img" width="30" mode="widthFix" src="/static/image/cm2_discover_icn_radio@2x.png" />主播电台
+      </view>
+      <view class="rec_more" bindtap="changeStatus" data-id="1">更多></view>
+    </view>
+    <view class="rec_content">
+      <view class="content_item" wx:for="{{radio}}" wx:key="id">
+        <image src="{{item.picUrl}}"></image>
+        <text class="name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+</view>
+<!-- 歌单 -->
+<view hidden="{{status != 1}}">
+  <view class="song">
+    <view class="song_title">
+      <view>
+        <text>全部歌单</text>
+      </view>
+      <view bindtap="cateNav">
+        <text>选择分类</text>
+      </view>
+    </view>
+    <view class="rec_content">
+      <view class="content_item" wx:for="{{playlists}}" wx:key="id">
+        <navigator url="../playlist/playlist?pid={{item.id}}&from=toplist">
+          <image src="{{item.coverImgUrl}}"></image>
+          <text class="name">{{item.name}}</text>
+          <view class="modal">
+            <image src="/static/image/p0.png" />
+            <text>{{item.playCount}}</text>
+          </view>
+          <view class="img_creator">
+            <image src="/static/image/cm2_icn_userhead@2x.png"></image>
+            <text>{{item.subscribers[0].nickname}}</text>
+          </view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 主播电台 -->
+<view hidden="{{status != 2}}">主播电台</view>
+<!-- 排行榜 -->
+<view hidden="{{status != 3}}">排行榜</view>
+<!-- 选择分类 -->
+<scroll-view class="showCate" hidden="{{showCate}}" scroll-into-view="c2" scroll-y="true" style="height:100%;">
+  <text bindtap="hideCate" class="hide">关闭</text>
+  <text class="all {{catelist.checked.name==catelist.res.all.name ? 'checked' :''}} " data-catype="{{catelist.res.al}}">{{catlist.res.all.name}}</text>
+  <view class="catelist" wx:for="{{catlist.res.categories}}" wx:for-index="idx">
+    <view class="cl_ico cl_list">
+      <image src="/static/image/cm2_discover_icn_{{idx}}@2x.png"></image>
+      <text>{{item}}</text>
+    </view>
+    <view class="cl_list {{catelist.checked.name==re.name?'checked':''}}  {{re.hot ?  'cl_ico_hot':''}}" wx:if="{{re.category==idx}}" wx:for="{{catlist.res.sub}}" wx:key="name" wx:for-item="re" bindtap="cateselect" data-catype="{{re}}">
+      <text class="cl_ico">{{re.name}}</text>
+    </view>
+  </view>
+</scroll-view>

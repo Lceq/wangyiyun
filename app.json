@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/w-index/w-index",
+    "pages/my/my",
+    "Pages/search/search",
+    "Pages/fm/fm", 
+    "Pages/recsongs/recsongs",
+    "Pages/playlist/playlist",
+    "Pages/mv/mv",
+    "Pages/recommend/recommend",
+    "Pages/playing/playing"
+    
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ed4014",
+    "navigationBarTitleText": "首页",
+    "enablePullDownRefresh": true,
+    "backgroundColor": "#eee",
+    "backgroundColorTop": "#3e76f6"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/outfood.png",
+        "selectedIconPath": "static/outfood_active.png",
+        "color": "#3e76f6"
+      },
+      {
+        "pagePath": "pages/w-index/w-index",
+        "text": "网易云",
+        "iconPath": "static/outfood.png",
+        "selectedIconPath": "static/outfood_active.png",
+        "color": "#3e76f6"
+      }
+    ],
+    "color": "#000",
+    "selectedColor": "#2d8cf0",
+    "backgroundColor": "#f1f1f1"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于寻找附近的检测点"
+    }
+  }
+}
